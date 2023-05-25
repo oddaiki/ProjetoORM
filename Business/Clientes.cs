@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Business
 {
-    public class Clientes : Base
+    public class Cliente : Base
     {
         [OpcoesBase(ChavePrimaria = true, UsaBD = true, UsaBusca = true)]
         public int ID { get; set; }
@@ -17,5 +17,15 @@ namespace Business
         public string Celular { get; set; }
         [OpcoesBase(UsaBD = true)]
         public string Cpf { get; set; }
+
+        public new List<Cliente> Todos()
+        {
+            List<Cliente> clientes = new List<Cliente>();
+            foreach(var ibase in base.Todos())
+            {
+                clientes.Add((Cliente)ibase);
+            }
+            return clientes;
+        }
         }
     }
